@@ -14,6 +14,7 @@
         bottom: 0px;
         left: 0px;
         right: 0px;
+        z-index: -1;
 }
 </style>
 
@@ -33,13 +34,36 @@ export default{
                 pitch: 0,  //设置俯仰角
                 rotation: 0    //设置地图旋转角度
             });
+
+            var markerLayer = new window.TMap.MultiMarker({
+                map: map,  //指定地图容器
+                //样式定义
+                styles: {
+                    "earthquake": new window.TMap.MarkerStyle({ 
+                        "width": 24,  // 点标记样式宽度（像素）
+                        "height": 24, // 点标记样式高度（像素）
+                        "src": "~@/assets/marker.png",  //图片路径
+                        //焦点在图片中的像素位置，一般大头针类似形式的图片以针尖位置做为焦点，圆形点以圆心位置为焦点
+                        "anchor": { x: 12, y: 12 }  
+                    }) 
+                },
+                //点标记数据数组
+                geometries: []
+            });
         },
-        loadScript() {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = "https://map.qq.com/api/gljs?v=1.exp&key=EY7BZ-UOOWQ-52L5P-GDJII-5VKL7-HOFMW&callback=init";
-            document.body.appendChild(script);
-        }
+
+        addPoint(earthquakeList) {
+            var len = earthquakeList.length
+            for (var i = 0; i < len; i++){
+                this.markerLayer.add([
+                    {
+                        'id': earthquakeList[i]['id'],
+                        'styleId': 'earthquake',
+                        "position": new window.TMap.LatLng(earthquakeList[i]['latitude'], earthquakeList[i]['longitude']),
+                    }
+                ])
+            }
+        },
     }
 }
 </script>

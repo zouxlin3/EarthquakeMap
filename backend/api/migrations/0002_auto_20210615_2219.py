@@ -14,7 +14,7 @@ def init_data(apps, schema_editor):
     data = Data(str(start), str(now), 2.5)
 
     filename = 'data.csv'
-    data.download(filename)
+    data.download(filename, 60)
 
 
 class Migration(migrations.Migration):

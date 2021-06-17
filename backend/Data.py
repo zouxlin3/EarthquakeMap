@@ -18,10 +18,10 @@ class Data:
         time = time.split(' ')
         return time[0]+'%20'+time[1]
 
-    def download(self, filename: str):
+    def download(self, filename: str, days: int):
         start = pd.Timestamp(self.starttime)
         end = pd.Timestamp(self.endtime)
-        delta = pd.Timedelta(days=60)
+        delta = pd.Timedelta(days=days)
 
         i = 1
         while True:
