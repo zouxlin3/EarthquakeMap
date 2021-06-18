@@ -1,12 +1,12 @@
 <template>
   <el-container>
-    <el-header></el-header>
+    <el-header style="top: 5%; position: absolute; width: 50%; left: 40%">
+      <Search v-on:searchBotton="searchBotton" ref="search"/>
+    </el-header>
     <el-main>
       <Map ref="map" />
     </el-main>
-    <el-footer style="bottom: 10%; position: absolute; width: 70%; left: 30%">
-      <Search v-on:searchBotton="searchBotton" ref="search"/>
-    </el-footer>
+    <el-footer></el-footer>
   </el-container>
 </template>
 
