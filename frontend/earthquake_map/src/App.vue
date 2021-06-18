@@ -6,7 +6,7 @@
     <el-main>
       <Map ref="map" />
     </el-main>
-    <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 300px">
+    <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 400px">
       <List :earthquakeList="earthquakeList" />
     </el-aside>
     <el-footer></el-footer>
