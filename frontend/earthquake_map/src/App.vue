@@ -6,6 +6,9 @@
     <el-main>
       <Map ref="map" />
     </el-main>
+    <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 30%">
+      <List :earthquakeList="earthquakeList" />
+    </el-aside>
     <el-footer></el-footer>
   </el-container>
 </template>
@@ -13,16 +16,25 @@
 <script>
 import Map from './components/Map.vue'
 import Search from './components/Search.vue'
+import List from './components/List.vue'
 
 export default{
   name: 'App',
   components: {
     Map,
     Search,
+    List,
+  },
+
+  data(){
+    return{
+      earthquakeList: '',
+    }
   },
 
   methods:{
     searchBotton(earthquakeList, length){
+      this.earthquakeList = earthquakeList
       this.$refs.map.addPoint(earthquakeList, length)
     }
   }

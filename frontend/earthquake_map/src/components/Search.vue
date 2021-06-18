@@ -1,6 +1,6 @@
 <template>
     <el-card class="box-card">
-        <el-row type="flex">
+        <el-row type="flex" align="middle">
             <el-col :span="18">
                 <div class="block">
                     <p>数据范围：{{ dateRange }}</p>
