@@ -1,12 +1,12 @@
 <template>
   <el-container>
-    <el-header style="top: 5%; position: absolute; width: 50%; left: 40%">
+    <el-header style="top: 5%; position: absolute; width: 600px; left: 50%">
       <Search v-on:searchBotton="searchBotton" ref="search"/>
     </el-header>
     <el-main>
       <Map ref="map" />
     </el-main>
-    <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 30%">
+    <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 300px">
       <List :earthquakeList="earthquakeList" />
     </el-aside>
     <el-footer></el-footer>

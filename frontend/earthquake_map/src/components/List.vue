@@ -1,8 +1,8 @@
 <template>
-    <el-card class="box-class">
-        <li v-for="earthquake in earthquakeList" :key="earthquake">
-            <Info :earthquake="earthquake" />
-        </li>
+    <el-card class="box-class" :body-style="{ padding: '0px' }">
+            <li v-for="earthquake in earthquakeList" :key="earthquake" style="list-style: None">
+                <Info :earthquake="earthquake" />
+            </li> 
     </el-card>
 </template>
 

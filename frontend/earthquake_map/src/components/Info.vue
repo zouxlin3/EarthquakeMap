@@ -1,8 +1,8 @@
 <template>
-    <el-card shadow="hover">
-        <el-row type="flex" align="middle">
+    <el-card shadow="hover" :body-style="{ padding: '0px' }">
+        <el-row type="flex" align="middle" justify="center">
             <el-col :span="6">
-                <p>{{ earthquake['mag'] }}</p>
+                <b>{{ earthquake['mag'] }}</b>
             </el-col>
             <el-col :span="18">
                 <p>({{ earthquake['latitude'] }},{{ earthquake['longitude'] }})</p>
