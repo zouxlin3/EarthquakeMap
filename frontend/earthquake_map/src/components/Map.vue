@@ -46,25 +46,20 @@ export default{
         addPoint(earthquakeList, length) {
             var markerLayer = new window.TMap.MultiMarker({
                 map: this.map,  //指定地图容器
-                geometries: []
+                geometries: [],
+                styles: {
+                    "earthquake": new window.TMap.MarkerStyle({
+                        "width": 20,
+                        "height": 20,
+                        "src": this.url,
+                        "anchor": { x: 10, y: 10 },
+                        "opacity": 0.5
+                    })
+                }
             });
 
             console.log('adding Points...')
-            var size = 8
-            var pointSize = 0
             for (var i = 0; i < length; i++){
-                pointSize = Math.round(size * earthquakeList[i]['mag']) // 根据震级动态大小
-
-                markerLayer.setStyles({
-                    "earthquake": new window.TMap.MarkerStyle({
-                        "width": pointSize,
-                        "height": pointSize,
-                        "src": this.url,
-                        "anchor": { x: pointSize/2, y: pointSize/2 },
-                        "opacity": 0.5
-                    })
-                })
-
                 markerLayer.add([
                     {
                         'id': earthquakeList[i]['id'],
