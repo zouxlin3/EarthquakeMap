@@ -73,7 +73,14 @@ import axios from 'axios'
                     this.$emit('searchBotton', this.earthquakeList, this.length),
 
                     this.getBtnState = false,
-                    this.getBotton = '搜索'
+                    this.getBotton = '搜索',
+                    this.$notify({
+                        message: '加载成功！',
+                        duration: 2000,
+                        position: 'bottom-right',
+                        showClose: false,
+                        type: 'success'
+                    })
                 ))
         },
 
@@ -87,7 +94,14 @@ import axios from 'axios'
                     this.getDateRange(),
                     
                     this.updateBtnState = false,
-                    this.updateBotton = '更新'
+                    this.updateBotton = '更新',
+                    this.$notify({
+                        message: '数据库更新成功！',
+                        duration: 2000,
+                        position: 'bottom-right',
+                        showClose: false,
+                        type: 'success'
+                    })
                 ))
         }
     }
