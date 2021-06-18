@@ -2,10 +2,10 @@
   <el-container>
     <el-header></el-header>
     <el-main>
-      <Map ref="map" :earthquakeList="earthquakeList" :length="length"/>
+      <Map ref="map" />
     </el-main>
     <el-footer style="bottom: 10%; position: absolute; width: 70%; left: 30%">
-      <Search @searchBotton="searchBotton" ref="search"/>
+      <Search v-on:searchBotton="searchBotton" ref="search"/>
     </el-footer>
   </el-container>
 </template>
@@ -20,18 +20,10 @@ export default{
     Map,
     Search,
   },
-  data(){
-    return{
-      earthquakeList: '',
-      length: '',
-    }
-  },
 
   methods:{
-    searchBotton(data){
-      this.earthquakeList = data[0]
-      this.length = data[1]
-      this.$refs.map.addPoint()
+    searchBotton(earthquakeList, length){
+      this.$refs.map.addPoint(earthquakeList, length)
     }
   }
 };

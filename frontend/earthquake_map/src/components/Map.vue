@@ -25,10 +25,6 @@ export default{
             url: require("../assets/marker.png")
         }
     },
-    props:{
-        earthquakeList:{defaut:''},
-        length:{defaut:''}
-    },
     mounted(){
         this.initMap()
         console.log('initialize map succeed.')
@@ -62,15 +58,14 @@ export default{
             });
         },
 
-        addPoint() {
+        addPoint(earthquakeList, length) {
             console.log('adding Points...')
-            console.log(this.length)
-            for (var i = 0; i < this.length; i++){
+            for (var i = 0; i < length; i++){
                 this.markerLayer.add([
                     {
-                        'id': this.earthquakeList[i]['id'],
+                        'id': earthquakeList[i]['id'],
                         'styleId': 'earthquake',
-                        "position": new window.TMap.LatLng(this.earthquakeList[i]['latitude'], this.earthquakeList[i]['longitude']),
+                        "position": new window.TMap.LatLng(earthquakeList[i]['latitude'], earthquakeList[i]['longitude']),
                     }
                 ])
                 console.log('add Point ', i)

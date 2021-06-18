@@ -15,7 +15,7 @@
                 </div>
             </el-col>
             <el-col :span="6">
-                <el-button type="primary" icon="el-icon-search" @click="searchBotton">搜索</el-button> 
+                <el-button type="primary" icon="el-icon-search" @click="getEarthquakeList">搜索</el-button> 
             </el-col>
         </el-row>
     </el-card>
@@ -50,19 +50,17 @@ import axios from 'axios'
                 ))
         },
 
-        getEarthquakeList(daterange){
+        getEarthquakeList(){
+            var daterange = this.value
             axios
                 .get('http://localhost:5000/api/list?start='+daterange[0].toISOString()+'&end='+daterange[1].toISOString())
                 .then(response => (
                     this.earthquakeList = response.data['list'],
-                    this.length = response.data['length']
+                    this.length = response.data['length'],
+
+                    this.$emit('searchBotton', this.earthquakeList, this.length)
                 ))
         },
-
-        searchBotton(){
-            this.getEarthquakeList(this.value)
-            this.$emit('searchBotton', [this.earthquakeList, this.length])
-        }
     }
   };
 </script>
