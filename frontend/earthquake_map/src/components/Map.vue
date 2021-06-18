@@ -22,7 +22,8 @@
 export default{
     data(){
         return{
-            url: require("../assets/marker.png")
+            url: require("../assets/marker.png"),
+            map: '',
         }
     },
     mounted(){
@@ -34,15 +35,17 @@ export default{
             //定义地图中心点坐标
             var center = new window.TMap.LatLng(39.984120, 116.307484)
             //定义map变量，调用 TMap.Map() 构造函数创建地图
-            var map = new window.TMap.Map(document.getElementById('container'), {
+            this.map = new window.TMap.Map(document.getElementById('container'), {
                 center: center,//设置地图中心点坐标
                 zoom: 4,   //设置地图缩放级别
                 pitch: 0,  //设置俯仰角
                 rotation: 0    //设置地图旋转角度
             });
+        },
 
+        addPoint(earthquakeList, length) {
             var markerLayer = new window.TMap.MultiMarker({
-                map: map,  //指定地图容器
+                map: this.map,  //指定地图容器
                 //样式定义
                 styles: {
                     "earthquake": new window.TMap.MarkerStyle({ 
@@ -56,12 +59,10 @@ export default{
                 //点标记数据数组
                 geometries: []
             });
-        },
 
-        addPoint(earthquakeList, length) {
             console.log('adding Points...')
             for (var i = 0; i < length; i++){
-                this.markerLayer.add([
+                markerLayer.add([
                     {
                         'id': earthquakeList[i]['id'],
                         'styleId': 'earthquake',
