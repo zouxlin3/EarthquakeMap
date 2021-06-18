@@ -24,26 +24,30 @@ export default{
         return{
             url: require("../assets/marker.png"),
             map: '',
+            zoom: 4,
+            center: new window.TMap.LatLng(39.984120, 116.307484),
+            markerLayer: '',
         }
     },
     mounted(){
-        this.initMap()
+        this.initMap(this.center, this.zoom)
         console.log('initialize map succeed.')
     },
     methods:{
-        initMap() {
-            //定义地图中心点坐标
-            var center = new window.TMap.LatLng(39.984120, 116.307484)
-            //定义map变量，调用 TMap.Map() 构造函数创建地图
+        initMap(center, zoom) {
             this.map = new window.TMap.Map(document.getElementById('container'), {
                 center: center,//设置地图中心点坐标
-                zoom: 4,   //设置地图缩放级别
+                zoom: zoom,   //设置地图缩放级别
                 pitch: 0,  //设置俯仰角
                 rotation: 0    //设置地图旋转角度
             });
         },
 
         addPoint(earthquakeList, length) {
+            if(this.markerLayer){
+                this.markerLayer.setMap(null)
+            }
+
             var markerLayer = new window.TMap.MultiMarker({
                 map: this.map,  //指定地图容器
                 geometries: [],
@@ -69,6 +73,8 @@ export default{
                 ])
                 console.log('add Point ', i)
             }
+
+            this.markerLayer = markerLayer
         },
     }
 }
