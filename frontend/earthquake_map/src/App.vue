@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header style="top: 5%; position: absolute; width: 600px; left: 50%">
+    <el-header style="top: 5%; position: absolute; width: 600px; right: 7%">
       <Search v-on:searchBotton="searchBotton" ref="search"/>
     </el-header>
     <el-main>

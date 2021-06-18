@@ -1,6 +1,6 @@
 <template>
     <el-card class="box-card">
-        <el-row type="flex" align="middle">
+        <el-row type="flex" justify="space-around">
             <el-col :span="18">
                 <div class="block">
                     <p>数据范围：{{ dateRange }}</p>
@@ -15,7 +15,12 @@
                 </div>
             </el-col>
             <el-col :span="6">
-                <el-button type="primary" icon="el-icon-search" @click="getEarthquakeList" :loading="state">{{ this.botton }}</el-button> 
+                <el-row style="margin-bottom: 5px; margin-top: 9px">
+                    <el-button type="primary" icon="el-icon-search" @click="getEarthquakeList" :loading="getBtnState">{{ this.getBotton }}</el-button>
+                </el-row>
+                <el-row>
+                    <el-button type="primary" icon="el-icon-refresh-right" @click="update" :loading="updateBtnState">{{ this.updateBotton }}</el-button> 
+                </el-row>
             </el-col>
         </el-row>
     </el-card>
@@ -35,8 +40,10 @@ import axios from 'axios'
         earthquakeList: '',
         value: '',
         length: '',
-        botton: '搜索',
-        state: false,
+        getBotton: '搜索',
+        getBtnState: false,
+        updateBotton: '更新',
+        updateBtnState: false,
       };
     },
     mounted(){
@@ -53,8 +60,8 @@ import axios from 'axios'
         },
 
         getEarthquakeList(){
-            this.state = true
-            this.botton = '加载中'
+            this.getBtnState = true
+            this.getBotton = '加载中'
 
             var daterange = this.value
             axios
@@ -65,10 +72,15 @@ import axios from 'axios'
 
                     this.$emit('searchBotton', this.earthquakeList, this.length),
 
-                    this.state = false,
-                    this.botton = '搜索'
+                    this.getBtnState = false,
+                    this.getBotton = '搜索'
                 ))
         },
+
+        update(){
+            this.updateBtnState = true
+            this.updateBotton = '更新中'
+        }
     }
   };
 </script>
