@@ -51,7 +51,7 @@ export default{
                     "earthquake": new window.TMap.MarkerStyle({ 
                         "width": 24,  // 点标记样式宽度（像素）
                         "height": 24, // 点标记样式高度（像素）
-                        "src": this.require,  //图片路径
+                        "src": this.url,  //图片路径
                         //焦点在图片中的像素位置，一般大头针类似形式的图片以针尖位置做为焦点，圆形点以圆心位置为焦点
                         "anchor": { x: 12, y: 12 }  
                     }) 
