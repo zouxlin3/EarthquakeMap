@@ -15,7 +15,7 @@
                 </div>
             </el-col>
             <el-col :span="6">
-                <el-button type="primary" icon="el-icon-search" @click="getEarthquakeList">搜索</el-button> 
+                <el-button type="primary" icon="el-icon-search" @click="getEarthquakeList" :loading="state">{{ this.botton }}</el-button> 
             </el-col>
         </el-row>
     </el-card>
@@ -35,6 +35,8 @@ import axios from 'axios'
         earthquakeList: '',
         value: '',
         length: '',
+        botton: '搜索',
+        state: false,
       };
     },
     mounted(){
@@ -51,6 +53,9 @@ import axios from 'axios'
         },
 
         getEarthquakeList(){
+            this.state = true
+            this.botton = '加载中'
+
             var daterange = this.value
             axios
                 .get('http://localhost:5000/api/list?start='+daterange[0].toISOString()+'&end='+daterange[1].toISOString())
@@ -58,7 +63,10 @@ import axios from 'axios'
                     this.earthquakeList = response.data['list'],
                     this.length = response.data['length'],
 
-                    this.$emit('searchBotton', this.earthquakeList, this.length)
+                    this.$emit('searchBotton', this.earthquakeList, this.length),
+
+                    this.state = false,
+                    this.botton = '搜索'
                 ))
         },
     }
