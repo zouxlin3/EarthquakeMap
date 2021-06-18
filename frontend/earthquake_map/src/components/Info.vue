@@ -17,3 +17,9 @@ export default {
     props:['earthquake']
 }
 </script>
+
+<style scoped>
+.el-card:hover{
+    cursor: pointer;
+}
+</style>
