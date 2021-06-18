@@ -5,7 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_vue.settings')
 import django
 django.setup()
 from api.models import Earthquake
-from django.utils.timezone import make_aware
+from django.utils.timezone import make_aware, make_naive
 
 
 class Data:
@@ -19,8 +19,8 @@ class Data:
         return time[0]+'%20'+time[1]
 
     def download(self, filename: str, days: int):
-        start = pd.Timestamp(self.starttime)
-        end = pd.Timestamp(self.endtime)
+        start = self.__change2naive(pd.Timestamp(self.starttime))
+        end = self.__change2naive(pd.Timestamp(self.endtime))
         delta = pd.Timedelta(days=days)
 
         i = 1
@@ -52,3 +52,9 @@ class Data:
                                     mag=aline['mag'])
             earthquake.time = make_aware(earthquake.format_time(aline['time']))
             earthquake.save()
+
+    def __change2naive(self, time):
+        if time.tzinfo:
+            return make_naive(time)
+        else:
+            return time

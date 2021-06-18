@@ -80,6 +80,15 @@ import axios from 'axios'
         update(){
             this.updateBtnState = true
             this.updateBotton = '更新中'
+
+            axios
+                .get('http://localhost:5000/api/check_latest')
+                .then(response => (
+                    this.getDateRange(),
+                    
+                    this.updateBtnState = false,
+                    this.updateBotton = '更新'
+                ))
         }
     }
   };
