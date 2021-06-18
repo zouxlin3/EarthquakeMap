@@ -37,12 +37,16 @@ def earthquake_list(request):
 
     earthquakes = Earthquake.objects.filter(time__range=(start, end))
 
+    j = 0
     for i in earthquakes:
         res['list'].append({
+            'id': i.id,
             'time': i.time,
             'latitude': i.latitude,
             'longitude': i.longitude,
             'mag': i.mag
         })
+        j = j + 1
+    res['length'] = j
 
     return JsonResponse(res)

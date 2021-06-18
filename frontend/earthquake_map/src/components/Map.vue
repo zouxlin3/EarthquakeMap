@@ -20,8 +20,18 @@
 
 <script>
 export default{
+    data(){
+        return{
+            url: require("../assets/marker.png")
+        }
+    },
+    props:{
+        earthquakeList:{defaut:''},
+        length:{defaut:''}
+    },
     mounted(){
         this.initMap()
+        console.log('initialize map succeed.')
     },
     methods:{
         initMap() {
@@ -42,7 +52,7 @@ export default{
                     "earthquake": new window.TMap.MarkerStyle({ 
                         "width": 24,  // 点标记样式宽度（像素）
                         "height": 24, // 点标记样式高度（像素）
-                        "src": "~@/assets/marker.png",  //图片路径
+                        "src": this.require,  //图片路径
                         //焦点在图片中的像素位置，一般大头针类似形式的图片以针尖位置做为焦点，圆形点以圆心位置为焦点
                         "anchor": { x: 12, y: 12 }  
                     }) 
@@ -52,16 +62,18 @@ export default{
             });
         },
 
-        addPoint(earthquakeList) {
-            var len = earthquakeList.length
-            for (var i = 0; i < len; i++){
+        addPoint() {
+            console.log('adding Points...')
+            console.log(this.length)
+            for (var i = 0; i < this.length; i++){
                 this.markerLayer.add([
                     {
-                        'id': earthquakeList[i]['id'],
+                        'id': this.earthquakeList[i]['id'],
                         'styleId': 'earthquake',
-                        "position": new window.TMap.LatLng(earthquakeList[i]['latitude'], earthquakeList[i]['longitude']),
+                        "position": new window.TMap.LatLng(this.earthquakeList[i]['latitude'], this.earthquakeList[i]['longitude']),
                     }
                 ])
+                console.log('add Point ', i)
             }
         },
     }

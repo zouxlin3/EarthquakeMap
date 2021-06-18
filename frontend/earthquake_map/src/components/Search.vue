@@ -34,10 +34,12 @@ import axios from 'axios'
         dateRange: '',
         earthquakeList: '',
         value: '',
+        length: '',
       };
     },
     mounted(){
         this.getDateRange()
+        console.log('get date range succeed.')
     },
     methods: {
         getDateRange(){
@@ -52,14 +54,15 @@ import axios from 'axios'
             axios
                 .get('http://localhost:5000/api/list?start='+daterange[0].toISOString()+'&end='+daterange[1].toISOString())
                 .then(response => (
-                    this.earthquakeList = response.data['list']
+                    this.earthquakeList = response.data['list'],
+                    this.length = response.data['length']
                 ))
         },
 
         searchBotton(){
             this.getEarthquakeList(this.value)
-            this.$emit('searchBotton', this.earthquakeList)
-        },
+            this.$emit('searchBotton', [this.earthquakeList, this.length])
+        }
     }
   };
 </script>
