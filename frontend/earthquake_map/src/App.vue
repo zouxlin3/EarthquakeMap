@@ -7,7 +7,7 @@
       <Map ref="map" />
     </el-main>
     <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 400px">
-      <List :earthquakeList="earthquakeList" />
+      <List :earthquakeList="earthquakeList" v-on:focus="focus"/>
     </el-aside>
     <el-footer></el-footer>
   </el-container>
@@ -36,6 +36,9 @@ export default{
     searchBotton(earthquakeList, length){
       this.earthquakeList = earthquakeList
       this.$refs.map.addPoint(earthquakeList, length)
+    },
+    focus(id){
+      this.$refs.map.focusPoint(id)
     }
   }
 };

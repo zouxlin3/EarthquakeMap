@@ -22,11 +22,13 @@
 export default{
     data(){
         return{
-            url: require("../assets/marker.png"),
+            markerUrl: require("../assets/marker.png"),
+            focusrUrl: require("../assets/focus.png"),
             map: '',
             zoom: 4,
             center: new window.TMap.LatLng(39.984120, 116.307484),
             markerLayer: '',
+            focusLayer: '',
         }
     },
     mounted(){
@@ -55,7 +57,7 @@ export default{
                     "earthquake": new window.TMap.MarkerStyle({
                         "width": 20,
                         "height": 20,
-                        "src": this.url,
+                        "src": this.markerUrl,
                         "anchor": { x: 10, y: 10 },
                         "opacity": 0.5
                     })
@@ -76,6 +78,39 @@ export default{
 
             this.markerLayer = markerLayer
         },
+
+        focusPoint(id){
+            if(this.focusLayer){
+                this.focusLayer.setMap(null)
+            }
+
+            var pointGeo = this.markerLayer.getGeometryById(id)
+            this.map.setCenter(pointGeo.position)
+
+            var focusLayer = new window.TMap.MultiMarker({
+                map: this.map,
+                geometries: [],
+                styles: {
+                    "focus": new window.TMap.MarkerStyle({
+                        "width": 20,
+                        "height": 20,
+                        "src": this.focusrUrl,
+                        "anchor": { x: 10, y: 10 },
+                        "opacity": 1
+                    })
+                }
+            })
+
+            focusLayer.add([
+                {
+                    'id': id,
+                    'styleId': "focus",
+                    'position': pointGeo.position,
+                }
+            ])
+
+            this.focusLayer = focusLayer
+        }
     }
 }
 </script>
