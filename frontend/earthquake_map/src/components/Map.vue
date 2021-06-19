@@ -110,6 +110,10 @@ export default{
             ])
 
             this.focusLayer = focusLayer
+        },
+
+        cancelFocus(){
+            this.focusLayer.setMap(null)
         }
     }
 }

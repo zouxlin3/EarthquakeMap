@@ -27,9 +27,19 @@ export default {
         focus(id){
             if (this.last_click_id) {
                 document.getElementById(this.last_click_id).style.borderColor = '#EBEEF5'
+                if(this.last_click_id === id){
+                    this.last_click_id = null
+                    this.$emit('cancel')
+                }
+                else{
+                    this.last_click_id = id
+                    this.$emit('focus', id)
+                }  
             }
-            this.last_click_id = id
-            this.$emit('focus', id)
+            else{
+                this.last_click_id = id
+                this.$emit('focus', id)
+            }
         }
     }
 }

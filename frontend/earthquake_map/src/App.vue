@@ -7,7 +7,7 @@
       <Map ref="map" />
     </el-main>
     <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 400px">
-      <List :earthquakeList="earthquakeList" v-on:focus="focus"/>
+      <List :earthquakeList="earthquakeList" v-on:focus="focus" v-on:cancel="cancel" />
     </el-aside>
     <el-footer></el-footer>
   </el-container>
@@ -39,6 +39,9 @@ export default{
     },
     focus(id){
       this.$refs.map.focusPoint(id)
+    },
+    cancel(){
+      this.$refs.map.cancelFocus()
     }
   }
 };
