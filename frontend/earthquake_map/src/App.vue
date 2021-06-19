@@ -4,10 +4,10 @@
       <Search v-on:searchBotton="searchBotton" ref="search"/>
     </el-header>
     <el-main>
-      <Map ref="map" />
+      <Map ref="map" v-on:focusList="focusList" />
     </el-main>
     <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 400px">
-      <List :earthquakeList="earthquakeList" v-on:focus="focus" v-on:cancel="cancel" />
+      <List :earthquakeList="earthquakeList" v-on:focus="focus" v-on:cancel="cancel" ref="list" />
     </el-aside>
     <el-footer></el-footer>
   </el-container>
@@ -42,6 +42,9 @@ export default{
     },
     cancel(){
       this.$refs.map.cancelFocus()
+    },
+    focusList(id){
+      this.$refs.list.focus(id)
     }
   }
 };

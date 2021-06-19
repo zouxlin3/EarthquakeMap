@@ -32,11 +32,13 @@ export default {
                     this.$emit('cancel')
                 }
                 else{
+                    document.getElementById(id).style.borderColor = '#409EFF'
                     this.last_click_id = id
                     this.$emit('focus', id)
                 }  
             }
             else{
+                document.getElementById(id).style.borderColor = '#409EFF'
                 this.last_click_id = id
                 this.$emit('focus', id)
             }

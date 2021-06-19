@@ -71,12 +71,17 @@ export default{
                         'id': earthquakeList[i]['id'],
                         'styleId': 'earthquake',
                         "position": new window.TMap.LatLng(earthquakeList[i]['latitude'], earthquakeList[i]['longitude']),
+                        "properties":{
+                            'mag': earthquakeList[i]['mag'],
+                            'time': earthquakeList[i]['time'],
+                        }
                     }
                 ])
                 console.log('add Point ', i)
             }
 
             this.markerLayer = markerLayer
+            this.markerLayer.on('click', this.focusList)
         },
 
         focusPoint(id){
@@ -114,7 +119,11 @@ export default{
 
         cancelFocus(){
             this.focusLayer.setMap(null)
-        }
+        },
+
+        focusList(evt){
+            this.$emit('focusList', evt.geometry.id)
+        },
     }
 }
 </script>

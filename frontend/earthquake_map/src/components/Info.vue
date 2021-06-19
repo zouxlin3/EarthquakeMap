@@ -17,7 +17,6 @@ export default {
     props:['earthquake'],
     methods:{
         focus(){
-            document.getElementById(this.earthquake['id']).style.borderColor = '#409EFF'
             this.$emit('focus', this.earthquake['id'])
         }
     }
