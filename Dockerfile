@@ -19,3 +19,5 @@ RUN mkdir data
 RUN python manage.py makemigrations api
 RUN python manage.py migrate
 RUN python manage.py runserver localhost:5000
+
+EXPOSE 8080
