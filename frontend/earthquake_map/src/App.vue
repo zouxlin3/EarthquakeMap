@@ -45,7 +45,7 @@ export default{
     },
     focusList(id){
       this.$refs.list.focus(id)
-    }
+    },
   }
 };
 

@@ -115,6 +115,7 @@ export default{
             ])
 
             this.focusLayer = focusLayer
+            this.focusLayer.on('click', this.focusList)
         },
 
         cancelFocus(){
