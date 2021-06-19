@@ -15,6 +15,7 @@ RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt
 
 WORKDIR /eMap/backend
+RUN mkdir data
 RUN python manage.py makemigrations api
 RUN python manage.py migrate
 RUN python manage.py runserver localhost:5000
