@@ -6,4 +6,5 @@ urlpatterns = [
     url('check_latest$', check_latest,),
     url('date_range$', date_range,),
     url('list$', earthquake_list,),
+    url('get_by_id$', get_by_id,),
 ]

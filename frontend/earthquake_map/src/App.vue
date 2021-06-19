@@ -9,7 +9,9 @@
     <el-aside style="top: 5%; position: absolute; left: 2%; bottom: 5%; width: 400px">
       <List :earthquakeList="earthquakeList" v-on:focus="focus" v-on:cancel="cancel" ref="list" />
     </el-aside>
-    <el-footer></el-footer>
+    <el-footer style="position: absolute; right: 2%; bottom: 20%; width: 320px">
+      <PointInfo ref="pointInfo" />
+    </el-footer>
   </el-container>
 </template>
 
@@ -17,6 +19,7 @@
 import Map from './components/Map.vue'
 import Search from './components/Search.vue'
 import List from './components/List.vue'
+import PointInfo from './components/PointInfo.vue'
 
 export default{
   name: 'App',
@@ -24,6 +27,7 @@ export default{
     Map,
     Search,
     List,
+    PointInfo,
   },
 
   data(){
@@ -39,12 +43,14 @@ export default{
     },
     focus(id){
       this.$refs.map.focusPoint(id)
+      this.$refs.pointInfo.close()
     },
     cancel(){
       this.$refs.map.cancelFocus()
     },
     focusList(id){
       this.$refs.list.focus(id)
+      this.$refs.pointInfo.getById(id)
     },
   }
 };

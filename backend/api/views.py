@@ -50,3 +50,19 @@ def earthquake_list(request):
     res['length'] = j
 
     return JsonResponse(res)
+
+
+@require_http_methods(['GET'])
+def get_by_id(request):
+    res = {}
+
+    earthquake = Earthquake.objects.filter(id=request.GET.get('id'))
+
+    for i in earthquake:
+        res['id'] = i.id
+        res['time'] = i.time
+        res['latitude'] = i.latitude
+        res['longitude'] = i.longitude
+        res['mag'] = i.mag
+
+    return JsonResponse(res)
