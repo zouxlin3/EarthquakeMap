@@ -1,19 +1,24 @@
 FROM python:3.8
 
 LABEL author="zouxlin3"
-LABEL maintainer="edisonzhou.cn"
+LABEL maintainer="zouxlin3@qq.com"
 
 RUN apt update
-RUN apt install nodejs npm -y
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-RUN cnpm install -g @vue/cli
+RUN apt install supervisor
+RUN apt install nginx
 
-WORKDIR /eMap
-COPY . .
+COPY /backend /backend
+COPY /frontend/dist /frontend
+COPY nginx.conf /
+COPY requirements.txt /
+
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt
+RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple gunicorn
 
-WORKDIR /eMap/backend
 RUN mkdir data
+WORKDIR /backend
+RUN nohup gunicon django_vue.wsgi -b 127.0.0.1:5001
+RUN nohup nginx -c /nginx.conf
 
-EXPOSE 8080
+EXPOSE 80
