@@ -12,21 +12,23 @@ docker run --name earthquake_map -d -p 8000:8000 zouxlin3/earthquake_map
 ```shell
 # 进入容器
 docker exec -it earthquake_map bash
+/mongodb/bin/mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
 /mongodb/bin/mongo
 # 进入了mongodb shell
 use earthquakes
 exit
 ```
-> 如果mongodb连接失败，先执行下面的命令
-```shell
-/mongodb/bin/mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
-```
 ## 初始化数据库
+> 需下载数据，等待时间较长
 ```
 cd /backend
 python manage.py migrate
 # 退出容器
 cd /
 exit
+```
+## 重启服务
+```shell
+supervisorctl restart uwsgi
 ```
 使用`IP:8000`地址访问

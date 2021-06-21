@@ -25,7 +25,6 @@ RUN mv mongodb-linux-x86_64-debian10-4.4.6 /mongodb
 RUN rm -f mongodb-linux-x86_64-debian10-4.4.6.tgz
 RUN mkdir -p /var/lib/mongo
 RUN mkdir -p /var/log/mongodb
-RUN /mongodb/bin/mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
 
 RUN mkdir data
 
