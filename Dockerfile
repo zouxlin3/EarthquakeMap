@@ -12,9 +12,7 @@ RUN apt update
 RUN apt install nginx -y
 COPY earthquakeMap_nginx.conf /etc/nginx/sites-available
 RUN ln -s /etc/nginx/sites-available/earthquakeMap_nginx.conf  /etc/nginx/sites-enabled
-
-RUN apt install supervisor -y
-COPY supervisor.conf /etc/supervisor/conf.d
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 COPY requirements.txt /
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
@@ -33,5 +31,6 @@ RUN mkdir data
 
 EXPOSE 8000
 
-
+RUN apt install supervisor -y
+COPY supervisor.conf /etc/supervisor/conf.d
 ENTRYPOINT ["supervisord", "-n"]

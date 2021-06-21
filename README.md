@@ -22,7 +22,11 @@ exit
 /mongodb/bin/mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
 ```
 ## 初始化数据库
+```
 cd /backend
 python manage.py migrate
+# 退出容器
+cd /
+exit
 ```
 使用`IP:8000`地址访问
