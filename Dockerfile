@@ -9,6 +9,7 @@ RUN apt install nginx -y
 COPY /backend /backend
 COPY /frontend/earthquake_map/dist /frontend
 COPY earthquakeMap_nginx.conf /
+COPY uwsgi_params /
 COPY requirements.txt /
 
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
