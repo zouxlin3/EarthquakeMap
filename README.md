@@ -5,7 +5,7 @@
 ## 运行docker容器
 ```shell
 docker pull zouxlin3/earthquake_map
-docker run --name earthquake_map -d -p 8000:8000 -p 5000:5000 zouxlin3/earthquake_map
+docker run --name earthquake_map -d -p 8000:8000 zouxlin3/earthquake_map
 # -p 主机端口:容器端口
 ```
 ## 安装数据库
