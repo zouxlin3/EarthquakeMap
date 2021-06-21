@@ -8,15 +8,17 @@ RUN apt install nginx -y
 
 COPY /backend /backend
 COPY /frontend/earthquake_map/dist /frontend
-COPY nginx.conf /
+COPY earthquakeMap_nginx.conf /
 COPY requirements.txt /
 
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt
-RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple gunicorn
+RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple uwsgi
 
 RUN mkdir data
 EXPOSE 8000
 
+RUN ln -s /earthquakeMap_nginx.conf /etc/nginx/sites-enabled/
+
 WORKDIR /backend
-ENTRYPOINT ["nohup", "gunicorn", "django_vue.wsgi:application", "-c", "./gunicorn.conf.py"]
+ENTRYPOINT ["uwsgi", "--ini", "uwsgi.ini"]
