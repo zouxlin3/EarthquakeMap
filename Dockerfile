@@ -19,7 +19,7 @@ RUN mkdir data
 EXPOSE 8000
 
 RUN ln -s /earthquakeMap_nginx.conf /etc/nginx/sites-enabled/
-RUN nginx start
+RUN /etc/init.d/nginx start
 
 WORKDIR /backend
 ENTRYPOINT ["uwsgi", "--ini", "uwsgi.ini"]
