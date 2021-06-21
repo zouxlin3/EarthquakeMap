@@ -4,7 +4,6 @@ chardet==4.0.0
 Django==3.2.4
 django-cors-headers==3.7.0
 djongo==1.3.6
-gunicorn==20.1.0
 idna==2.10
 numpy==1.20.3
 pandas==1.2.4
