@@ -5,15 +5,14 @@ LABEL maintainer="zouxlin3@qq.com"
 
 COPY /backend /backend
 COPY /frontend/earthquake_map/dist /frontend
-COPY earthquakeMap_nginx.conf /etc/nginx/site-available/default
-COPY uwsgi_params /
+COPY earthquakeMap_nginx.conf /etc/nginx/sites-available
 COPY requirements.txt /
 COPY sources.list /etc/apt
-COPY supervisor.conf /etc/supervisor/conf.d/
+COPY supervisor.conf /etc/supervisor/conf.d
 
 RUN apt update
 RUN apt install nginx -y
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN ln -s /etc/nginx/sites-available/earthquakeMap_nginx.conf  /etc/nginx/sites-enabled
 
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt
