@@ -5,6 +5,9 @@
 后端使用`django`框架，通过`djongo`库连接`mongodb`数据库。前端使用`vue`开发，通过`axios`与后端连接，采用`ELement UI`库。
 
 地图使用腾讯地图`Javascript API`，数据来自`USGS Earthquake Hazard Program`
+<img src="https://images.cnblogs.com/cnblogs_com/blogs/682700/galleries/1990776/o_210622113419em%20(2).jpeg">
+<img src="https://images.cnblogs.com/cnblogs_com/blogs/682700/galleries/1990776/o_210622113411em%20(1).jpeg">
+<img src="https://images.cnblogs.com/cnblogs_com/blogs/682700/galleries/1990776/o_210622113425em%20(3).jpeg">
 # 2 实现功能
 - 依据选择的时间段在地图上标记该时间段发生地震的位置
 - 列出时间段内地震的详细信息
