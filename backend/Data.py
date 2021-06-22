@@ -33,7 +33,7 @@ class Data:
                   + '&endtime=' + self.__format_time(str(start_plus))+'&minmagnitude='+str(self.minmagnitude) + \
                   '&orderby=time'
             res = requests.get(url)
-            filepath = os.path.join('..', 'data', filename)  # 保存到上一级目录下的data文件夹
+            filepath = os.path.join(filename)  # 保存到上一级目录下的data文件夹
             with open(filepath, 'wb') as f:
                 f.write(res.content)
 
@@ -44,7 +44,7 @@ class Data:
             start = start_plus
 
     def __add_earthquake(self, filename: str):
-        data = pd.read_csv(os.path.join('..', 'data', filename))
+        data = pd.read_csv(os.path.join(filename))
         for i in range(data.shape[0]):
             aline = data.iloc(axis=0)[-(i+1)]
             earthquake = Earthquake(latitude=aline['latitude'],

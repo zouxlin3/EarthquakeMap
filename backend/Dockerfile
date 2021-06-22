@@ -10,12 +10,11 @@ RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple --upgrade pip
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple -r requirements.txt
 RUN pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple uwsgi
 
-RUN mkdir /data
-
 EXPOSE 5000
 
 COPY sources.list /etc/apt
 RUN apt update
+RUN apt install vim -y
 RUN apt install supervisor -y
 COPY em_b_supervisor.conf /etc/supervisor/conf.d
 ENTRYPOINT ["supervisord", "-n"]
