@@ -50,6 +50,10 @@ export default{
                 this.markerLayer.setMap(null)
             }
 
+            if(this.focusLayer){
+                this.focusLayer.setMap(null)
+            }
+
             var markerLayer = new window.TMap.MultiMarker({
                 map: this.map,  //指定地图容器
                 geometries: [],

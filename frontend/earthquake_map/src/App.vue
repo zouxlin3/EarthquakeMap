@@ -40,6 +40,7 @@ export default{
     searchBotton(earthquakeList, length){
       this.earthquakeList = earthquakeList
       this.$refs.map.addPoint(earthquakeList, length)
+      this.$refs.pointInfo.close()
     },
     focus(id){
       this.$refs.map.focusPoint(id)
