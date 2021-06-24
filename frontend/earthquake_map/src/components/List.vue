@@ -26,16 +26,23 @@ export default {
     methods:{
         focus(id){
             if (this.last_click_id) {
-                document.getElementById(this.last_click_id).style.borderColor = '#EBEEF5'
-                if(this.last_click_id === id){
-                    this.last_click_id = null
-                    this.$emit('cancel')
+                if(document.getElementById(this.last_click_id)){
+                    document.getElementById(this.last_click_id).style.borderColor = '#EBEEF5'
+                    if(this.last_click_id === id){
+                        this.last_click_id = ''
+                        this.$emit('cancel')
+                    }
+                    else{
+                        document.getElementById(id).style.borderColor = '#409EFF'
+                        this.last_click_id = id
+                        this.$emit('focus', id)
+                    }  
                 }
                 else{
                     document.getElementById(id).style.borderColor = '#409EFF'
                     this.last_click_id = id
                     this.$emit('focus', id)
-                }  
+                }
             }
             else{
                 document.getElementById(id).style.borderColor = '#409EFF'
