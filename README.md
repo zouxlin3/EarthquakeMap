@@ -59,7 +59,7 @@ ln -s /etc/nginx/sites-available/em_f_nginx.conf  /etc/nginx/sites-enabled
 
 设置进程守护
 
-在`/etc/supervisord.d/conf.d`文件夹新建配置文件`em_f_supervisor.conf`(自行更改文件名)
+在`/etc/supervisord.d`文件夹新建配置文件`em_f_supervisor.conf`(自行更改文件名)
 > 查看`/etc/supervisord.conf`的最后一行`include`的内容，修改配置文件后缀为`.conf`以及配置文件路径
 
 输入以下内容
